@@ -71,6 +71,13 @@ void mergeSort(int arr[],int s,int e)
     merge(arr,s,e);
 }
 
+git init
+git add -A
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/shekharbhide/DSA-Questions-C-.git
+git push -u origin main
+
 int main()
 {
     int n; cin >> n;
