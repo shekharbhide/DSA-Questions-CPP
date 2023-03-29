@@ -61,14 +61,16 @@ void nQueens(vector<vector<char>>&board,int n,int col){
 
     // ek case 
     for(int row=0; row < n;row++){
-        //
+        cout <<"trying to place  col= "<<col << ",  row= " << row << endl<<endl;
         if(isSafe(board,n,row,col)){
+            cout <<"succes  col= "<<col << ",  row= " << row << endl<<endl;
             board[row][col]='Q';
 
             //rec call
             nQueens(board,n,col+1);
 
             //backtracking
+            cout << "backtracking " << "col= "<<col << ",  row= " << row  <<endl <<endl;
             board[row][col]='-';
         }
 
@@ -86,7 +88,7 @@ int main()
 }
 
 
-// IS SAFE BY USING MAP
+// IsSAFE BY USING MAP
 
 /*
 class Solution {
@@ -209,6 +211,10 @@ public:
     }
 };
 */
+
+
+
+
 
 //LEETCODE 
 /*

@@ -1,8 +1,6 @@
-class Solution {
-public:
-
- 
-    bool isSafe(vector<vector<char>>&board,int n,int row,int col){
+#include<bits/stdc++.h>
+using namespace std;
+bool isSafe(vector<vector<char>>&board,int n,int row,int col){
         int i,j;
         i=row;
         j=col;
@@ -66,5 +64,13 @@ public:
          vector<vector<char>>board(n,vector<char>(n,'.'));
          return countSoln(board,n);
     }
-    
-};
+
+int main()
+{
+    int n; cin >> n;
+    cout << totalNQueens(n);
+    return 0;
+}
+
+ 
+        
