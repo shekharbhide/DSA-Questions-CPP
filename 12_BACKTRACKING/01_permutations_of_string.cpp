@@ -10,13 +10,16 @@ void permutationsOfString(string &str,int i){
 
     // ek case solve krlo
     for(int j=i;j<str.size();j++){
-      //  cout <<  "i="<<i <<"   j="<<j <<  endl;
-        //cout <<  "str " << str << endl;
+        cout <<  "i="<<i <<"   j="<<j <<  endl;
+        cout <<  "str " << str << endl;
         swap(str[i],str[j]);
         permutationsOfString(str,i+1);
 
         // BACKTRACING
+        cout <<  "DOING BT  i="<<i <<"   j="<<j <<  endl;
+        
         swap(str[i],str[j]);
+        cout <<  "AFTER BT str " << str << endl;
     }
 }
 int main()
