@@ -39,6 +39,12 @@ public:
         this->age = obj.age;
         cout << " COPY CONSTRUCTOR" << endl;
     }
+
+    // Printing
+    void print()
+    {
+        cout << this->rollno << " " << this->name << " " << this->age << endl;
+    }
 };
 int main()
 {
@@ -47,9 +53,25 @@ int main()
     Student *obj1 = new Student("Shekhar", 6, 20);
     Student a(20);
     Student b("Shekhar", 6, 20);
-    Student s = a;
+    // copieing the values
+    /* Student s = a;
     Student s1 = b;
 
-    Student s2(s1);
+    Student s2(s1); */
+
+    Student stud;
+    stud.age = 29;
+    stud.name = "Shekhar";
+    stud.rollno = 6;
+    // copy one object into another
+    Student dem = stud;
+    Student dhhf = dem;
+    stud.print();
+    dem.print();
+    dhhf.print();
+
+    //  doing changes in name
+    stud.name[6] = 'T';
+    stud.print();
     return 0;
 }

@@ -124,3 +124,74 @@ OUTPUT
 6 9 2 3 5 1 8 7 4
 7 4 5 2 8 6 3 1 9
 */
+
+
+
+// LEETCODE
+
+/*
+class Solution {
+public:
+    bool isSafe(int row,int col,vector<vector<char>>&board,char value){
+        for(int i=0;i<board.size();i++){
+            // check for row
+            if(board[row][i]==value)
+                return false;
+
+            // check for col
+             if(board[i][col]==value)
+                return false;
+
+            // check for 3 * 3 box
+            if(board[3*(row/3)+(i/3)][3*(col/3)+(i%3)]==value)
+                return false;        
+        }
+        return true;
+    }
+    bool solve(vector<vector<char>>&board){
+        int n=board.size();
+
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<n;j++)
+            {
+                //check for empty ce;
+                if(board[i][j]=='.')
+                {
+                    //try to fill with values ranging from 1 to 9
+                    for(char val='1';val<='9';val++)
+                    {
+                        if(isSafe(i,j,board,val))
+                        {
+                            //place the value
+                            board[i][j]=val;
+                            
+                            // rec call for rem solns
+                            bool remainingSoln = solve(board);
+
+                            if(remainingSoln==true){
+                                return true;
+                            }
+                            else{
+                                //backtrack
+                                board[i][j]='.';
+                            }
+                        }
+                    }
+                    //agr 1 se 9 tk koi bhi value se soln nahi nikla current cell pr that means picchhe kahi pr Galti he
+                    //go back by returning false
+                 
+                    return false;
+
+                }
+            }
+        }
+        return true;
+    }
+    void solveSudoku(vector<vector<char>>& board) {
+         solve(board);
+    }
+};
+*
+
+/
