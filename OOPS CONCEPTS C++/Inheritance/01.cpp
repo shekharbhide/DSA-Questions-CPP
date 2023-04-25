@@ -16,6 +16,12 @@ public:
     void print()
     {
         cout << "Inside dog class" << endl;
+        cout << "Inside dog class" << endl;
+    }
+    void write()
+    {
+        cout << "Inside dog class" << endl;
+        cout << "Inside dog class" << endl;
     }
 };
 
