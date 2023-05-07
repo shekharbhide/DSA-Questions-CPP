@@ -23,7 +23,7 @@ public:
 // insert node at the right of head of LInked List
 void insertAtHead(Node *&head, Node *&tail, int data)
 {
-    // what if LL is empty
+    //  if LL is empty
     if (head == NULL)
     {
         Node *newNode = new Node(data);
@@ -61,6 +61,7 @@ void insertAtTail(Node *&head, Node *&tail, int data)
     // step3 : update the tail node
     tail = newNode;
 }
+
 void printLL(Node *&head)
 {
     Node *temp = head;
