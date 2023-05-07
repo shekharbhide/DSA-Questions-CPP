@@ -117,5 +117,11 @@ int main()
     cout << "head: " << head->data << endl;
     cout << "tail: " << tail->data << endl;
 
+    insertAtHead(head, tail, 10);
+    insertAtHead(head, tail, 20);
+    insertAtHead(head, tail, 50);
+
+    insertAtTail(head, tail, 70);
+
     return 0;
 }
