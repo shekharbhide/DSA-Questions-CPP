@@ -12,14 +12,18 @@ public:
         this->data = 0;
         this->next = NULL;
     }
-
     Node(int data)
     {
         this->data = data;
         this->next = NULL;
     }
-};
 
+    // Destructor to delete node
+    ~Node()
+    {
+        cout << this->data << " deleted" << endl;
+    }
+};
 void insertAtHead(Node *&head, Node *&tail, int data)
 {
     if (head == NULL)
@@ -43,17 +47,15 @@ void insertAtTail(Node *&head, Node *&tail, int data)
         Node *newNode = new Node(data);
         head = newNode;
         tail = newNode;
-    }
-    else
-    {
-        Node *newNode = new Node(data);
-        tail->next = newNode;
-        tail = newNode;
         return;
     }
+
+    Node *newNode = new Node(data);
+    tail->next = newNode;
+    tail = newNode;
 }
 
-int findLen(Node *&head)
+int findLen(Node *head)
 {
     int len = 0;
     Node *temp = head;
@@ -65,52 +67,67 @@ int findLen(Node *&head)
     return len;
 }
 
-void insertAtPosition(Node *&head, Node *&tail, int position, int data)
+void deleteNode(int position, Node *&head, Node *&tail)
 {
     if (head == NULL)
     {
-        Node *newNode = new Node(data);
-        head = newNode;
-        tail = newNode;
+        cout << "LL IS EMPTY!" << endl;
+        return;
     }
-    else
+
+    if (position == 1)
     {
-        // step 1 : Find the posn prev & curr
-        int len = findLen(head);
+        Node *temp = head;
+        head = head->next;
+        temp->next = NULL;
+        delete temp;
+        return;
+    }
 
-        if (position == 0)
-        {
-            insertAtHead(head, tail, data);
-            return;
-        }
-
-        if (position >= len)
-        {
-            insertAtTail(head, tail, data);
-            return;
-        }
-
+    int len = findLen(head); //
+    if (position == len)     // last node of LL
+    {
+        // step 1 : find prev
         int i = 1;
         Node *prev = head;
-        while (i < position)
+        while (i < position - 1)
         {
             prev = prev->next;
             i++;
         }
+        // step 2 : prev->next ko NULL krdo
+        prev->next = NULL;
+
+        // step 3 : Update the tail
+        Node *temp = tail;
+        tail = prev;
+
+        // step 4: delet temp
+        delete temp;
+        return;
+    }
+    else //  delete at Middle in Linked List
+    {
+        // find prev
+        int i = 1;
+        Node *prev = head;
+        while (i < position - 1)
+        {
+            prev = prev->next;
+            i++;
+        }
+
         Node *curr = prev->next;
+        // step2
+        prev->next = curr->next;
 
-        // step 2:
-        Node *newNode = new Node(data);
+        curr->next = NULL;
 
-        // step 3:
-        newNode->next = curr;
-
-        // step 4:
-        prev->next = newNode;
+        delete curr;
     }
 }
 
-void printLL(Node *&head)
+void printLL(Node *head)
 {
     Node *temp = head;
     while (temp != NULL)
@@ -127,22 +144,13 @@ int main()
     insertAtHead(head, tail, 10);
     insertAtHead(head, tail, 20);
     insertAtHead(head, tail, 30);
-    insertAtTail(head, tail, 40);
     insertAtTail(head, tail, 50);
+    insertAtTail(head, tail, 60);
+    insertAtTail(head, tail, 70);
 
     printLL(head);
     cout << endl;
-    cout << "head: " << head->data << endl;
-    cout << "tail: " << tail->data << endl;
-    cout << endl;
-
-    insertAtPosition(head, tail, 0, 1);
-    insertAtPosition(head, tail, 5, 100);
-
+    deleteNode(4, head, tail);
     printLL(head);
-    cout << endl;
-    cout << "head: " << head->data << endl;
-    cout << "tail: " << tail->data << endl;
-
     return 0;
 }

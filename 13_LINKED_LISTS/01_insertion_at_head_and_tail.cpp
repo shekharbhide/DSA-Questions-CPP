@@ -81,6 +81,8 @@ int main()
     insertAtHead(head, tail, 50);
 
     insertAtTail(head, tail, 70);
+    insertAtTail(head, tail, 80);
+    insertAtTail(head, tail, 90);
 
     printLL(head);
     return 0;
