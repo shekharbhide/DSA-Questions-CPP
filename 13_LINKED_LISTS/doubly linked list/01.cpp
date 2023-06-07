@@ -8,12 +8,13 @@ public:
     Node *prev;
     Node *next;
 
-    Node()
-    {
-        this->data = 0;
+    Node(){
+         this->data = 0;
         this->prev = NULL;
         this->next = NULL;
     }
+       
+    
 
     Node(int data)
     {
@@ -38,6 +39,24 @@ void insertAtHead(Node *&head, Node *&tail, int data)
         newNode->next = head;
         head->prev = newNode;
         head = newNode;
+    }
+}
+
+void insertAtTail(Node *&head, Node *&tail, int data)
+{
+    if (head == NULL)
+    {
+        Node *newNode = new Node(data);
+        head = newNode;
+        tail = newNode;
+    }
+    else
+    {
+        Node *newNode = new Node(data);
+        tail->next = newNode;
+        newNode->prev = tail;
+
+        tail = newNode;
     }
 }
 void print(Node *&head)
@@ -81,7 +100,11 @@ int main()
     Node *head = first;
     Node *tail = third;
     insertAtHead(head, tail, 100);
+    print(head);
 
+    cout << endl;
+    insertAtTail(head, tail, 200);
     print(head);
     return 0;
 }
+
